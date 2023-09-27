@@ -7,18 +7,21 @@ using UnityEngine.UI;
 public class SceneManager : MonoBehaviour
 {
 
-	[SerializeField] private GameObject loadingImage;
+	[SerializeField] private GameObject? loadingImage;
 	[SerializeField] private int loadingSceneInterval = 1;
 
-	[SerializeField] private Text highScore;
+	[SerializeField] private Text? highScore;
 	private const string ScorePlayerPreFabName = "Score";
 	private float startBtnClickedTime=0;
 
 	private bool gameStart = false;
 
 	private void Awake() {
-		loadingImage.SetActive(false);
-		highScore.text = $"HighScore: {PlayerPrefs.GetInt(ScorePlayerPreFabName)}";
+		if(highScore != null) {
+
+			loadingImage.SetActive(false);
+			highScore.text = $"HighScore: {PlayerPrefs.GetInt(ScorePlayerPreFabName)}";
+		}
 	}
 
 	private void Update() {
@@ -38,5 +41,15 @@ public class SceneManager : MonoBehaviour
 
 	public void QuitGame() {
 		Application.Quit();
+	}
+
+	public void GoToMainMenu() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene(0, LoadSceneMode.Single);
+		Time.timeScale = 1;
+
+	}
+	public void PlayAgain() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene(1, LoadSceneMode.Single);
+		Time.timeScale = 1;
 	}
 }

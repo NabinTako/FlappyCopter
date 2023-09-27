@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour {
 	private Rigidbody2D rb;
@@ -21,12 +22,15 @@ public class Player : MonoBehaviour {
 	private const string ScorePlayerPrefsName = "Score";
 
 
+
 	[SerializeField] private float jumpForce;
 	[SerializeField] private float jumpForceMultiplier;
+
+	[SerializeField] private GameObject menuButton;
 	// Start is called before the first frame update
 	void Start() {
 		rb = GetComponent<Rigidbody2D>();
-
+		menuButton.SetActive(false);
 	}
 
 	// Update is called once per frame
@@ -56,9 +60,9 @@ public class Player : MonoBehaviour {
 		if (collision.transform.parent.tag.Contains("Pipe")) {
 
 			PlayerPrefs.SetInt(ScorePlayerPrefsName, score);
+			menuButton.SetActive(true);
 
-			Debug.LogError("GameOver");
-
+			Time.timeScale = 0;
 		}
 	}
 }

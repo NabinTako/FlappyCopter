@@ -65,7 +65,7 @@ public class SpanManager : MonoBehaviour
 
 				GameObject cloud = Instantiate(clouds[Random.Range(0,3)], cloudTransform.position, Quaternion.identity);
 
-				Destroy(cloud, 7f);
+				Destroy(cloud, 6f);
 			}
 		}
 	}

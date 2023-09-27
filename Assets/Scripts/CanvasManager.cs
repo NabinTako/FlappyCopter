@@ -19,7 +19,9 @@ public class CanvasManager : MonoBehaviour
     }
 
 	private void Player_onPlayerPassPipe(int score) {
+        if(scoreText != null) {
 
-        scoreText.text = $"Score: {score}";
+            scoreText.text = $"Score: {score}";
+        }
 	}
 }
